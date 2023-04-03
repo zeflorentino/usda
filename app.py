@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def menu():
-  texto_final = f"""<br><br><center><font face = "Tahoma" size = "6"><strong><a href="/milho-atual">Milho</a> | <a href="/milho-anterior">Milho Antigo</a><br><br><a href="/soja-atual">Soja</a> | <a href="/soja-anterior">SojaAntigo</a><br><br><a href="/erro">Erro</a></strong></font></center>"""
+  texto_final = f"""<br><br><center><font face = "Tahoma" size = "6"><strong><a href="/milho-atual">Milho</a> | <a href="/milho-anterior">Milho Antigo</a><br><br><a href="/soja-atual">Soja</a> | <a href="/soja-anterior">Soja Antigo</a><br><br><a href="/erro">Erro</a></strong></font></center> | <a href="/consulta">Consulta Relatórios</a>"""
   return texto_final
 
 @app.route("/milho-atual")
