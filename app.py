@@ -14,11 +14,33 @@ app = Flask(__name__)
 
 @app.route("/")
 def menu():
-  texto_final = f"""<br><br><center><font face = "Tahoma" size = "6"><strong><a href="/milho-atual">Milho</a> | <a href="/milho-anterior">Milho Antigo</a>
-  <br><br>
-  <a href="/soja-atual">Soja</a> | <a href="/soja-anterior">Soja Antigo</a>
-  <br><br>
-  <a href="/erro">Erro</a> | <a href="/consulta">Consulta Relatórios</a></strong></font></center>"""
+  texto_final = f"""<div style="text-align: center;">
+  <h1 style="font-family: Verdana;">Relatório do USDA</h1>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
+    <a href="/milho-atual" style="text-decoration: none; color: inherit;">Milho</a>
+  </button>
+  <br>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
+    <a href="/milho-anterior" style="text-decoration: none; color: inherit;">Milho Antigo</a>
+  </button>
+  <br>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
+    <a href="/soja-atual" style="text-decoration: none; color: inherit;">Soja</a>
+  </button>
+  <br>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
+    <a href="/soja-anterior" style="text-decoration: none; color: inherit;">Soja Antigo</a>
+  </button>
+  <br>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
+    <a href="/erro" style="text-decoration: none; color: inherit;">Erro</a>
+  </button>
+  <br>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px;">
+    <a href="/consulta" style="text-decoration: none; color: inherit;">Consulta Relatórios</a>
+  </button>
+</div>
+"""
   return texto_final
 
 @app.route("/milho-atual")
