@@ -46,16 +46,16 @@ def processa_update(dados):
  else:
   username = '[não definido]'
  if message == "/start":
-  texto_resposta = f"Olá, {first_name}! Seja bem-vinda(o). \n\nQuer receber mensalmente as projeções do Departamento de Agricultura dos Estados Unidos para a safra de milho? \n\nSe sim, envie '1'. \n\nSe quer parar de receber, envie '2'."
+  texto_resposta = f"Olá, <strong>{first_name}</strong>! Seja bem-vinda(o). \n\nQuer receber mensalmente as projeções do <strong>Departamento de Agricultura dos Estados Unidos</strong> para a safra de milho? \n\nSe sim, envie '1'. \n\nSe quer parar de receber, envie '2'."
  elif message == "1":
   ja_cadastrado = cadastrados.findall(str(chat_id))
   if len(ja_cadastrado) >= 1:
-   texto_resposta = f"{first_name}, você já está cadastrado!"
+   texto_resposta = f"<strong>{first_name}</strong>, você já está cadastrado!"
   else: 
    cadastrados.append_row([str(data_hora), username, first_name, chat_id])
    texto_resposta = f"{first_name}, você foi cadastrado com sucesso!"
  elif message == "2":
-  texto_resposta = f"Ok, {first_name}, retiramos você da nossa lista. Até breve!"
+  texto_resposta = f"Ok, <strong>{first_name}</strong>, retiramos você da nossa lista. Até breve!"
   lista_cadastros = cadastrados.get_all_values()
   for x in lista_cadastros:
    if x[3] == str(chat_id):
@@ -63,11 +63,11 @@ def processa_update(dados):
   cadastrados.clear()
   cadastrados.update("A1", lista_cadastros)
  elif message == palavra_secreta:
-  texto_resposta = f'{first_name}, caso não queira mais receber os alertas, envie "2".'
+  texto_resposta = f'<strong>{first_name}</strong>, caso não queira mais receber os alertas, envie "2".'
   envia_boletim()
  else:
-  texto_resposta = f"Não entendi, {first_name}!\n\nCaso queira receber mensalmente as projeções do Departamento de Agricultura dos Estados Unidos, envie '1'.\n\nSe quer parar de receber, envie '2'."
- nova_mensagem = {"chat_id": chat_id, "text": texto_resposta}
+  texto_resposta = f"Não entendi, <strong>{first_name}</strong>!\n\nCaso queira receber mensalmente as projeções do <strong>Departamento de Agricultura dos Estados Unidos</strong>, envie '1'.\n\nSe quer parar de receber, envie '2'."
+ nova_mensagem = {"chat_id": chat_id, "text": texto_resposta, "parse_mode" : 'HTML'}
  requests.post(f"https://api.telegram.org./bot{token}/sendMessage", data=nova_mensagem)  
 
  update_id = update["update_id"]
