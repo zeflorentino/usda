@@ -1,0 +1,10 @@
+flask
+gunicorn
+tchan
+requests
+datetime
+pandas
+xlrd
+gspread
+oauth2client
+openai
