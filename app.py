@@ -18,7 +18,7 @@ def menu():
   <br><br>
   <a href="/soja-atual">Soja</a> | <a href="/soja-anterior">Soja Antigo</a>
   <br><br>
-  <a href="/erro">Erro</a></strong><a href="/consulta">Consulta Relatórios</a></font></center>"""
+  <a href="/erro">Erro</a> | <a href="/consulta">Consulta Relatórios</a></strong></font></center>"""
   return texto_final
 
 @app.route("/milho-atual")
