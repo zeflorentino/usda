@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 
 import funcoes
 import telegram_funcoes
-import consulta
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 
