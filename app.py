@@ -109,7 +109,9 @@ def resultado():
   ano = str(request.form['ano'])
   mes = str(request.form['mes'])
   link = f"https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-{mes}.csv"
-  resultado = funcoes.historico(link)
+  safra = str(request.form['safra'])
+  produto = str(request.form['produto'])
+  resultado = funcoes.historico(link, produto, safra)
   mostra = f"Veja os resultados!<br><br>{resultado}"
   return mostra
 
