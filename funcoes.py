@@ -213,8 +213,7 @@ def texto_soja(data):
   return texto_final
 
 def texto_trigo(data):
-  try: 
-
+  try:
     download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
 
     tabela_trigo = pd.read_excel(download.content, sheet_name = "Page 19", skiprows=9)
@@ -230,12 +229,12 @@ def texto_trigo(data):
     tabela_trigo['local'] = tabela_trigo['local'].str.strip()
 
     tabela_trigo['mes'] = tabela_trigo['mes'].str.strip()
-    
-    texto_final = f''
-
+        
     paises = ['World  3/', 'United States', 'Brazil', 'Argentina', 'Russia', 'Ukraine' ]
 
     colunas = ['producao', 'uso_total', 'exportacao', 'estoques_finais']
+
+    texto_final = f''
 
     for pais in paises:
       tabela_pais = tabela_trigo.query('local == @pais')
@@ -245,8 +244,7 @@ def texto_trigo(data):
 
       for coluna in colunas:
         numero = tabela_pais[coluna].iloc[1]
-        numero = ponto_para_virgula(numero)
-
+              
         lista_paises = {'World  3/' : 'mundial',
                         'United States' : 'nos EUA',
                         'Brazil' : 'no Brasil',
@@ -276,17 +274,13 @@ def texto_trigo(data):
           complemento = ", para"
           varia = f' em {percentual}%'
 
-        if numero >= 1000.0:
-          numero = numero / 1000
-          numero = ponto_para_virgula(numero)
-          unidade = 'bilhão'
-        
-        elif numero > 2:
+        if numero > 2:
           unidade = "milhões"
           numero = ponto_para_virgula(numero)
+      
         else:
           unidade = "milhão"
-          numero = ponto_para_virgula(numero)  
+          numero = ponto_para_virgula(numero) 
 
         if coluna == 'producao':
           mensagem = f'Trigo: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
@@ -300,7 +294,8 @@ def texto_trigo(data):
         else:
           mensagem = f'Trigo: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
-        texto_final = texto_final + mensagem
+        texto_final = texto_final + mensagem  
+
   except:
     texto_final = "O relatório ainda não está disponível!"   
   return texto_final
