@@ -112,7 +112,7 @@ def resultado():
   safra = str(request.form['safra'])
   produto = str(request.form['produto'])
   resultado = funcoes.historico(link, produto, safra)
-  mostra = f"Veja os resultados!<br><br>{resultado}"
+  mostra = f"<font face = "Tahoma" size = "6"><strong>Veja os resultados!</strong></font><br><br>{resultado}"
   return mostra
 
 if __name__ == '__main__':
