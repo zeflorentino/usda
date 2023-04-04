@@ -24,7 +24,7 @@ ultimo = int(registros.get("A1")[0][0])
 token = os.environ["TELEGRAM_API_KEY"]
 
 def envia_boletim():
- resumo = funcoes.cabeca('03', '23')
+ resumo = funcoes.texto_cabeca('0323')
  nova_resposta = f'&#127805 <strong>NOVO RELATÓRIO:</strong> {resumo} \n\n<strong>Veja todos os destaques em:</strong>\nhttps://site-teste-zeflorentino.onrender.com/' 
  lista_cadastros = cadastrados.get_all_values()
 
@@ -72,6 +72,3 @@ def processa_update(dados):
 
  update_id = update["update_id"]
  registros.update("A1", update_id)
-
-
-   
