@@ -14,8 +14,7 @@ Os códigos presentes neste repositório criam:
 ## **Conteúdos**
 
 - **app.py** cria as páginas no **Render** usando **Flask**.
-- **funcoes.py** contém as funções que geram os títulos rápidos para a soja e para o milho.
+- **funcoes.py** contém as funções que geram os títulos rápidos para a soja e para o milho e a consulta na base de dados antiga.
 - **requiriments.txt** tem a lista de bibliotecas usadas no código.
 - **telegram_funcoes.py** guarda o código do robô "ZéBot" usado para cadastrar usuários em uma tabela e para disparar mensagens.
 - **templates** é uma pasta com os modelos de HTML usados na página de consulta de relatórios.
-- **consulta.py** é o código que permite acessar relatórios anteriores a partir da solicitação do usuário. Ele também gera pequenas frases com os dados principais.
