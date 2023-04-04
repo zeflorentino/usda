@@ -47,10 +47,6 @@ def menu():
     <a href="/algodao-anterior" style="text-decoration: none; color: inherit;">Algodão Antigo</a>
   </button>
   <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/erro" style="text-decoration: none; color: inherit;">Erro</a>
-  </button>
-  <br>
   <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px;">
     <a href="/consulta" style="text-decoration: none; color: inherit;">Consulta Relatórios</a>
   </button>
@@ -150,15 +146,6 @@ def algodao_anterior():
         <center><a href="/trigo-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
   
-@app.route("/erro")
-def error():
-  data_errada = '0625'
-  texto_meio = funcoes.texto_milho(data_errada)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Demonstração de erro.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
-
 @app.route("/botdoze", methods=["POST"])
 def telegram_bot():
   update = request.json
