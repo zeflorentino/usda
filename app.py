@@ -73,8 +73,9 @@ def milho_anterior():
   hoje = datetime.now()
   primeiro_dia = hoje.replace(day=1)
   data_anterior = primeiro_dia - timedelta(days=1)
-  data_anterior = data_anterior.strftime("%m%y")
-  texto_meio = funcoes.texto_milho(data_anterior)
+  mes = data_anterior.strftime('%m')
+  ano = data_anterior.strftime('%Y')
+  texto_meio = funcoes.escreve(mes, ano, "milho")
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
         <center><a href="/milho-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
@@ -82,8 +83,9 @@ def milho_anterior():
 
 @app.route("/soja-atual")
 def soja_atual():
-  data_hoje = datetime.now().strftime('%m%y')
-  texto_meio = funcoes.texto_soja(data_hoje)
+  mes = datetime.now().strftime('%m')
+  ano = datetime.now().strftime('%Y')
+  texto_meio = funcoes.escreve(mes, ano, "soja")
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
         <center><a href="/soja-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
@@ -94,8 +96,9 @@ def soja_anterior():
   hoje = datetime.now()
   primeiro_dia = hoje.replace(day=1)
   data_anterior = primeiro_dia - timedelta(days=1)
-  data_anterior = data_anterior.strftime("%m%y")
-  texto_meio = funcoes.texto_soja(data_anterior)
+  mes = data_anterior.strftime('%m')
+  ano = data_anterior.strftime('%Y')
+  texto_meio = funcoes.escreve(mes, ano, "soja")
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
         <center><a href="/soja-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
@@ -103,8 +106,9 @@ def soja_anterior():
 
 @app.route("/trigo-atual")
 def trigo_atual():
-  data_hoje = datetime.now().strftime('%m%y')
-  texto_meio = funcoes.texto_trigo(data_hoje)
+  mes = datetime.now().strftime('%m')
+  ano = datetime.now().strftime('%Y')
+  texto_meio = funcoes.escreve(mes, ano, "trigo")
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
         <center><a href="/trigo-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
@@ -115,8 +119,9 @@ def trigo_anterior():
   hoje = datetime.now()
   primeiro_dia = hoje.replace(day=1)
   data_anterior = primeiro_dia - timedelta(days=1)
-  data_anterior = data_anterior.strftime("%m%y")
-  texto_meio = funcoes.texto_trigo(data_anterior)
+  mes = data_anterior.strftime('%m')
+  ano = data_anterior.strftime('%Y')
+  texto_meio = funcoes.escreve(mes, ano, "trigo")
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
         <center><a href="/trigo-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
@@ -124,8 +129,9 @@ def trigo_anterior():
 
 @app.route("/algodao-atual")
 def algodao_atual():
-  data_hoje = datetime.now().strftime('%m%y')
-  texto_meio = funcoes.texto_algodao(data_hoje)
+  mes = datetime.now().strftime('%m')
+  ano = datetime.now().strftime('%Y')
+  texto_meio = funcoes.escreve(mes, ano, "algodao")
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
         <center><a href="/trigo-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
@@ -136,8 +142,9 @@ def algodao_anterior():
   hoje = datetime.now()
   primeiro_dia = hoje.replace(day=1)
   data_anterior = primeiro_dia - timedelta(days=1)
-  data_anterior = data_anterior.strftime("%m%y")
-  texto_meio = funcoes.texto_algodao(data_anterior)
+  mes = data_anterior.strftime('%m')
+  ano = data_anterior.strftime('%Y')
+  texto_meio = funcoes.escreve(mes, ano, "algodao")
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
         <center><a href="/trigo-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
