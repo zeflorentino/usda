@@ -7,7 +7,7 @@ def ponto_para_virgula(numero):
   numero = float(numero)
   numero = round(numero, 3)
   numero = str(numero)
-  numero = numero.replace('.0', '')
+  numero = numero.replace('.0 ', '')
   numero = numero.replace('.', ',')
   return numero
 
