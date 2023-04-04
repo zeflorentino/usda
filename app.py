@@ -32,6 +32,14 @@ def menu():
   </button>
   <br>
   <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
+    <a href="/trigo-atual" style="text-decoration: none; color: inherit;">Trigo</a>
+  </button>
+  <br>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
+    <a href="/trigo-anterior" style="text-decoration: none; color: inherit;">Trigo Antigo</a>
+  </button>
+  <br>
+  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
     <a href="/erro" style="text-decoration: none; color: inherit;">Erro</a>
   </button>
   <br>
@@ -82,6 +90,27 @@ def soja_anterior():
   texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
         <center><a href="/soja-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+  return texto_final
+
+@app.route("/trigo-atual")
+def trigo_atual():
+  data_hoje = datetime.now().strftime('%m%y')
+  texto_meio = funcoes.texto_trigo(data_hoje)
+  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
+        {texto_meio}
+        <center><a href="/trigo-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+  return texto_final
+  
+@app.route("/trigo-anterior")
+def trigo_anterior():
+  hoje = datetime.now()
+  primeiro_dia = hoje.replace(day=1)
+  data_anterior = primeiro_dia - timedelta(days=1)
+  data_anterior = data_anterior.strftime("%m%y")
+  texto_meio = funcoes.texto_trigo(data_anterior)
+  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
+        {texto_meio}
+        <center><a href="/trigo-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
   
 @app.route("/erro")
