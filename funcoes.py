@@ -142,7 +142,7 @@ def escreve(mes, ano, produto):
 
         mensagem_final += f'{head} USDA {movimento} {termo} de {projecao_corrigir} {pais_corrigir} na safra 2022/23{varia}{complemento} {valor} {unidade} de toneladas <br><br>'
   except:
-    mensagem_final = "O relatório deste mês ainda não está disponível.
+    mensagem_final = "O relatório deste mês ainda não está disponível."
   return mensagem_final
 
 
