@@ -139,18 +139,15 @@ def texto_soja(data):
     tabela_soja['local'] = tabela_soja['local'].str.strip()
 
     tabela_soja['mes'] = tabela_soja['mes'].str.strip()
-
-    paises = ['World  2/', 'United States', 'Brazil', 'Argentina']
-
+    
     texto_final = f''
 
-    tabela_pais = tabela_soja.query('local == "United States"')
+    paises = ['World  2/', 'United States', 'Brazil', 'Argentina']
 
     colunas = ['producao', 'uso_total', 'exportacao', 'estoques_finais']
 
     for pais in paises:
       tabela_pais = tabela_soja.query('local == @pais')
-      colunas = ['producao', 'uso_total', 'exportacao', 'estoques_finais']
       for coluna in colunas:
         tabela_pais[f'variacao_' + coluna] = float(tabela_pais[coluna].iloc[1]) / float(tabela_pais[coluna].iloc[0]) * 100 - 100
         tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 1)
@@ -171,7 +168,6 @@ def texto_soja(data):
           str_pais = str_pais.replace(chave, valor)
 
         percentual = ponto_para_virgula(abs(tabela_pais[f'variacao_{coluna}'].iloc[1]))
-
 
         if tabela_pais[f'variacao_{coluna}'].iloc[1] == 0:
           movimento = "mantém"
