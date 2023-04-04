@@ -10,6 +10,7 @@ def ponto_para_virgula(numero):
   if numero.is_integer():
     numero = str(int(numero)).replace('.0', '')
   else:
+    numero = round(numero, 2)
     numero = str(numero).replace('.', ',')
   return numero
 
