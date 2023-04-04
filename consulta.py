@@ -8,7 +8,7 @@ def ponto_para_virgula(numero):
   numero = numero.replace('.', ',')
   return numero
 
-def puxa_historico(link, produto, safra):
+def historico(link, produto, safra):
   link = link
   produto = produto
   safra = safra
