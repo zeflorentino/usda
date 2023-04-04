@@ -82,12 +82,12 @@ def texto_milho(data):
 
         elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
           movimento = "eleva"
-          complemento = "para"
+          complemento = ", para"
           varia = f' em {percentual}%'
 
         else:
           movimento = "reduz"
-          complemento = "para"
+          complemento = ", para"
           varia = f' em {percentual}%'
 
         if numero >= 1000.0:
@@ -103,16 +103,16 @@ def texto_milho(data):
           numero = ponto_para_virgula(numero)  
 
         if coluna == 'producao':
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}, {complemento} {numero} {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>Milho:</strong> USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas <br><br>'
 
         elif coluna == 'uso_total':
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}, {complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>Milho:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
           
         elif coluna == 'exportacao':
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}, {complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>Milho:</strong> USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         else:
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}, {complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>Milho:</strong> USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         texto += mensagem
 
@@ -126,9 +126,9 @@ def texto_soja(data):
 
     download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
 
-    tabela_soja = pd.read_excel(download.content, sheet_name = 22, skiprows=38)
+    tabela_soja = pd.read_excel(download.content, sheet_name = "Page 28", skiprows=40)
 
-    tabela_soja.columns = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'uso_total', 'exportacao', 'estoques_finais']
+    tabela_soja.columns = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'esmagamento', 'uso_total', 'exportacao', 'estoques_finais']
 
     tabela_soja['local'].fillna(method='pad', inplace=True)
 
@@ -176,25 +176,25 @@ def texto_soja(data):
 
         elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
           movimento = "eleva"
-          complemento = "para"
+          complemento = ", para"
           varia = f' em {percentual}%'
 
         else:
           movimento = "reduz"
-          complemento = "para"
+          complemento = ", para"
           varia = f' em {percentual}%'
 
         if coluna == 'producao':
-          mensagem = f'Soja: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}, {complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
 
         elif coluna == 'uso_total':
-          mensagem = f'Soja: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}, {complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
 
         elif coluna == 'exportacao':
-          mensagem = f'Soja: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}, {complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
 
         else:
-          mensagem = f'Soja: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}, {complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
 
         texto_final = texto_final + mensagem
   except:
