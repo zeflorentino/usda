@@ -201,12 +201,25 @@ def texto_soja(data):
     texto_final = "O relatório ainda não está disponível!"   
   return texto_final
 
-def historico(link):
+def historico(link, produto, safra):
+  link = link
+  produto = produto
+  safra = safra
+  if produto == 'soja':
+    reporte = 'World Soybean Supply and Use'
+    paises = ['World', 'United States', 'Brazil', 'Argentina']
+    head = "Soja:"
+  else:
+    reporte = 'World Corn Supply and Use'
+    paises = ['World', 'United States', 'Brazil', 'Argentina', 'Ukraine']
+    head = "Milho:"
+  
   tabela = pd.read_csv(link)
-  tabela = tabela.query('Commodity == "Corn" and MarketYear	== "2022/23" and ReportTitle == "World Corn Supply and Use"')  
+  tabela = tabela.query('MarketYear	== @safra and ReportTitle == @reporte')  
   tabela = tabela.loc[:, ['Commodity', 'Region', 'Attribute', 'Value']] 
+  
   mensagem_final = f""
-  paises = ['World', 'United States', 'Brazil', 'Argentina', 'Ukraine']
+  
   projecoes = ['Production', 'Domestic Total', 'Exports', 'Ending Stocks']
   
   for pais in paises:
@@ -241,10 +254,11 @@ def historico(link):
           complemento = "milhão"
           valor = ponto_para_virgula(valor)
         
-      mensagem_final += f'Milho: USDA estimava {projecao_corrigir} {pais_corrigir} na safra 2022/23 em {valor} {complemento} de toneladas.\n'
+      mensagem_final += f'{head} USDA estimava {projecao_corrigir} {pais_corrigir} na safra 2022/23 em {valor} {complemento} de toneladas.\n'
         
       
   return mensagem_final
+      
       
 def texto_cabeca(data):
   try: 
