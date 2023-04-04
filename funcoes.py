@@ -7,11 +7,14 @@ import pandas as pd
 
 
 def ponto_para_virgula(numero):
+  numero = float(numero)
+  numero = round(numero, 2)
   if numero.is_integer():
-    numero = str(int(numero)).replace('.0', '')
+    numero = str(numero)
+    numero = numero.replace('.0', '')
   else:
-    numero = round(numero, 2)
-    numero = str(numero).replace('.', ',')
+    numero = str(numero)
+    numero = numero.replace('.', ',')
   return numero
 
 
