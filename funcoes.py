@@ -3,6 +3,9 @@ import requests
 from datetime import datetime, timedelta
 import pandas as pd
 
+
+
+
 def ponto_para_virgula(numero):
   numero = float(numero)
   numero = round(numero, 3)
@@ -11,23 +14,9 @@ def ponto_para_virgula(numero):
   numero = numero.replace('.', ',')
   return numero
 
-def converte_mes(mes):
-  meses = {'Jan' : 'janeiro',
-         'Feb': 'fevereiro',
-         'Mar': 'março', 
-         'Apr' : 'abril',
-         'May' : 'maio',
-         'Jun' :'junho',
-         'Jul' : 'julho',
-         'Aug' : 'agosto',
-         'Sep' : 'setembro',
-         'Oct' : 'outubro',
-         'Nov' : 'novembro',
-         'Dec' : 'dezembro'}
-  for chave, valor in meses.items():
-    mes = mes.replace(chave, valor)
-    mes = mes.replace(chave, valor)
-  return mes
+
+
+
 
 def texto_milho(data):
   try: 
@@ -121,6 +110,10 @@ def texto_milho(data):
   
   return texto
 
+
+
+
+
 def texto_soja(data):
   try: 
 
@@ -212,6 +205,10 @@ def texto_soja(data):
     texto_final = "O relatório ainda não está disponível!"   
   return texto_final
 
+
+
+
+
 def texto_trigo(data):
   try:
     download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
@@ -299,6 +296,9 @@ def texto_trigo(data):
   except:
     texto_final = "O relatório ainda não está disponível!"   
   return texto_final
+
+
+
 
 def texto_algodao(data):
   try: 
@@ -394,6 +394,10 @@ def texto_algodao(data):
     texto_final = "O relatório ainda não está disponível!"   
   return texto_final
 
+
+
+
+
 def historico(link, produto, safra):
   link = link
   produto = produto
@@ -451,7 +455,9 @@ def historico(link, produto, safra):
         
       
   return mensagem_final
-      
+  
+  
+  
       
 def texto_cabeca(data):
   try: 
