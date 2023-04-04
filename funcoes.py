@@ -254,7 +254,7 @@ def historico(link, produto, safra):
           complemento = "milhão"
           valor = ponto_para_virgula(valor)
         
-      mensagem_final += f'{head} USDA estimava {projecao_corrigir} {pais_corrigir} na safra 2022/23 em {valor} {complemento} de toneladas.\n'
+      mensagem_final += f'{head} USDA estimava {projecao_corrigir} {pais_corrigir} na safra {safra} em {valor} {complemento} de toneladas.<br><br>'
         
       
   return mensagem_final
