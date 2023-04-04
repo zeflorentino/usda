@@ -77,7 +77,7 @@ def texto_milho(data):
 
         if tabela_pais[f'variacao_{coluna}'].iloc[1] == 0:
           movimento = "mantém"
-          complemento = "em"
+          complemento = " em"
           varia = ''
 
         elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
@@ -171,7 +171,7 @@ def texto_soja(data):
 
         if tabela_pais[f'variacao_{coluna}'].iloc[1] == 0:
           movimento = "mantém"
-          complemento = "em"
+          complemento = " em"
           varia = ''
 
         elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
