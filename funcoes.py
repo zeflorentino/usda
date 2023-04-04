@@ -154,8 +154,7 @@ def texto_soja(data):
 
       for coluna in colunas:
         numero = tabela_pais[coluna].iloc[1]
-        numero = ponto_para_virgula(numero)
-
+        
         lista_paises = {'World  2/' : 'mundial',
                         'United States' : 'nos EUA',
                         'Brazil' : 'no Brasil',
@@ -183,18 +182,30 @@ def texto_soja(data):
           movimento = "reduz"
           complemento = ", para"
           varia = f' em {percentual}%'
+          
+        if numero >= 1000.0:
+          numero = numero / 1000
+          numero = ponto_para_virgula(numero)
+          unidade = 'bilhão'
+        
+        elif numero > 2:
+          unidade = "milhões"
+          numero = ponto_para_virgula(numero)
+        else:
+          unidade = "milhão"
+          numero = ponto_para_virgula(numero)  
 
         if coluna == 'producao':
-          mensagem = f'Soja: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade) de toneladas<br><br>'
 
         elif coluna == 'uso_total':
-          mensagem = f'Soja: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         elif coluna == 'exportacao':
-          mensagem = f'Soja: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         else:
-          mensagem = f'Soja: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         texto_final = texto_final + mensagem
   except:
@@ -265,17 +276,29 @@ def texto_trigo(data):
           complemento = ", para"
           varia = f' em {percentual}%'
 
+        if numero >= 1000.0:
+          numero = numero / 1000
+          numero = ponto_para_virgula(numero)
+          unidade = 'bilhão'
+        
+        elif numero > 2:
+          unidade = "milhões"
+          numero = ponto_para_virgula(numero)
+        else:
+          unidade = "milhão"
+          numero = ponto_para_virgula(numero)  
+
         if coluna == 'producao':
-          mensagem = f'Trigo: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Trigo: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         elif coluna == 'uso_total':
-          mensagem = f'Trigo: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Trigo: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         elif coluna == 'exportacao':
-          mensagem = f'Trigo: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Trigo: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         else:
-          mensagem = f'Trigo: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} milhões de toneladas<br><br>'
+          mensagem = f'Trigo: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         texto_final = texto_final + mensagem
   except:
