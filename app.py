@@ -47,10 +47,6 @@ def menu():
     <a href="/algodao-anterior" style="text-decoration: none; color: inherit;">Algodão Antigo</a>
   </button>
   <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/erro" style="text-decoration: none; color: inherit;">Erro</a>
-  </button>
-  <br>
   <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px;">
     <a href="/consulta" style="text-decoration: none; color: inherit;">Consulta Relatórios</a>
   </button>
