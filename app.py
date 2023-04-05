@@ -62,9 +62,9 @@ def menu():
 def milho_atual():
   data_hoje = datetime.now().strftime('%m%y')
   texto_meio = funcoes.texto_milho(data_hoje)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/milho-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/milho-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
   
 @app.route("/milho-anterior")
@@ -74,18 +74,18 @@ def milho_anterior():
   data_anterior = primeiro_dia - timedelta(days=1)
   data_anterior = data_anterior.strftime("%m%y")
   texto_meio = funcoes.texto_milho(data_anterior)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/milho-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/milho-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
 
 @app.route("/soja-atual")
 def soja_atual():
   data_hoje = datetime.now().strftime('%m%y')
   texto_meio = funcoes.texto_soja(data_hoje)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/soja-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/soja-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
   
 @app.route("/soja-anterior")
@@ -95,18 +95,18 @@ def soja_anterior():
   data_anterior = primeiro_dia - timedelta(days=1)
   data_anterior = data_anterior.strftime("%m%y")
   texto_meio = funcoes.texto_soja(data_anterior)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/soja-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/soja-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
 
 @app.route("/trigo-atual")
 def trigo_atual():
   data_hoje = datetime.now().strftime('%m%y')
   texto_meio = funcoes.texto_trigo(data_hoje)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/trigo-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/trigo-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
   
 @app.route("/trigo-anterior")
@@ -116,18 +116,18 @@ def trigo_anterior():
   data_anterior = primeiro_dia - timedelta(days=1)
   data_anterior = data_anterior.strftime("%m%y")
   texto_meio = funcoes.texto_trigo(data_anterior)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/trigo-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/trigo-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
 
 @app.route("/algodao-atual")
 def algodao_atual():
   data_hoje = datetime.now().strftime('%m%y')
   texto_meio = funcoes.texto_algodao(data_hoje)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório deste mês.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/trigo-anterior"><font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/algodao-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
   
 @app.route("/algodao-anterior")
@@ -137,18 +137,9 @@ def algodao_anterior():
   data_anterior = primeiro_dia - timedelta(days=1)
   data_anterior = data_anterior.strftime("%m%y")
   texto_meio = funcoes.texto_algodao(data_anterior)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Relatório do mês passado.</strong></font><br><br>
+  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
         {texto_meio}
-        <center><a href="/trigo-atual"><font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
-  
-@app.route("/erro")
-def error():
-  data_errada = '0625'
-  texto_meio = funcoes.texto_milho(data_errada)
-  texto_final = f"""<font face = "Tahoma" size = "6"><strong>Demonstração de erro.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/"><font face = "Tahoma" size = "4"><strong>Retorne ao menu</strong></font></a></center>"""
+        <center><a href="/algodao-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
   return texto_final
 
 @app.route("/botdoze", methods=["POST"])
@@ -169,7 +160,7 @@ def resultado():
   safra = str(request.form['safra'])
   produto = str(request.form['produto'])
   resultado = funcoes.historico(link, produto, safra)
-  mostra = f"""<font face = "Tahoma" size = "6"><strong>Destaques do relatório de {mes}/{ano} sobre a safra {safra} de {produto}:</strong></font><br><br>{resultado}"""
+  mostra = f"""<font face = "Tahoma" size = "5"><strong>Destaques do relatório de {mes}/{ano} sobre a safra {safra} de {produto}:</strong></font><br><br>{resultado}"""
   return mostra
 
 if __name__ == '__main__':
