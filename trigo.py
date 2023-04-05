@@ -1,3 +1,6 @@
+from funcoes import importa_bibliotecas, ponto_para_virgula
+
+importa_bibliotecas()
 
 
 def texto_trigo(data):
