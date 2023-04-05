@@ -1,3 +1,7 @@
+from funcoes import importa_bibliotecas, ponto_para_virgula
+
+importa_bibliotecas()
+
 def texto_soja(data):
   try: 
 
