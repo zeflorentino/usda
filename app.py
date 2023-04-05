@@ -8,7 +8,7 @@ from consulta import historico
 from algodao import texto_algodao
 from milho import texto_milho
 from soja import texto_soja
-from trigo import trigo
+from trigo import texto_trigo
 from telegram_funcoes import processa_update
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
