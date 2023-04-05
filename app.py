@@ -27,10 +27,10 @@ def menu():
                          milho_text='Milho',
                          trigo_text='Trigo',
                          algodao_text='Algodão',
-                         soja_text='Soja antigo',
-                         milho_text='Milho antigo',
-                         trigo_text='Trigo antigo',
-                         algodao_text='Algodão antigo',
+                         soja_antigo_text='Soja antigo',
+                         milho_antigo_text='Milho antigo',
+                         trigo_antigo_text='Trigo antigo',
+                         algodao_antigo_text='Algodão antigo',
                         consulta_text='Consulte relatórios')
 
 @app.route("/milho-atual")
