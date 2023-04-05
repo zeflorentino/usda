@@ -290,7 +290,7 @@ def texto_trigo(data):
 def texto_algodao(data):
   try: 
 
-    download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde0323.xls')
+    download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
 
     tabela_algodao = pd.read_excel(download.content, sheet_name = "Page 27", skiprows=9)
 
