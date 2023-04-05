@@ -96,10 +96,10 @@ def texto_milho(data):
           mensagem = f'<strong>Milho:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
           
         elif coluna == 'exportacao':
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>Milho:</strong> USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         else:
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>Milho:</strong> USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         texto += mensagem
 
@@ -189,10 +189,10 @@ def texto_soja(data):
           mensagem = f'Soja: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         elif coluna == 'exportacao':
-          mensagem = f'Soja: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         else:
-          mensagem = f'Soja: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
+          mensagem = f'Soja: USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         texto_final = texto_final + mensagem
   except:
@@ -276,10 +276,10 @@ def texto_trigo(data):
           mensagem = f'Trigo: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         elif coluna == 'exportacao':
-          mensagem = f'Trigo: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
+          mensagem = f'Trigo: USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         else:
-          mensagem = f'Trigo: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
+          mensagem = f'Trigo: USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
 
         texto_final = texto_final + mensagem  
 
@@ -371,10 +371,10 @@ def texto_algodao(data):
           mensagem = f'Algodão: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} toneladas<br><br>'
 
         elif coluna == 'exportacao':
-          mensagem = f'Algodão: USDA {movimento} projeção de exportações {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} toneladas<br><br>'
+          mensagem = f'Algodão: USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} toneladas<br><br>'
 
         else:
-          mensagem = f'Algodão: USDA {movimento} perspectiva de estoques finais {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} toneladas<br><br>'
+          mensagem = f'Algodão: USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} toneladas<br><br>'
 
         texto_final = texto_final + mensagem
   except:
