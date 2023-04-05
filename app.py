@@ -13,46 +13,25 @@ app = Flask(__name__)
 
 @app.route("/")
 def menu():
-  texto_final = f"""<div style="text-align: center;">
-  <h1 style="font-family: Verdana;">Relatório do USDA</h1>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/milho-atual" style="text-decoration: none; color: inherit;">Milho</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/milho-anterior" style="text-decoration: none; color: inherit;">Milho Antigo</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/soja-atual" style="text-decoration: none; color: inherit;">Soja</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/soja-anterior" style="text-decoration: none; color: inherit;">Soja Antigo</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/trigo-atual" style="text-decoration: none; color: inherit;">Trigo</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/trigo-anterior" style="text-decoration: none; color: inherit;">Trigo Antigo</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/algodao-atual" style="text-decoration: none; color: inherit;">Algodão</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px; margin-bottom: 5px;">
-    <a href="/algodao-anterior" style="text-decoration: none; color: inherit;">Algodão Antigo</a>
-  </button>
-  <br>
-  <button style="font-family: Verdana; font-size: 16px; color: white; background-color: black; padding: 10px; border: none; border-radius: 5px;">
-    <a href="/consulta" style="text-decoration: none; color: inherit;">Consulta Relatórios</a>
-  </button>
-</div>
-"""
-  return texto_final
+  return render_template('produtos.html',
+                         soja_link='/soja-atual',
+                         milho_link='/milho-atual',
+                         trigo_link='/trigo-atual',
+                         algodao_link='/algodao-atual',
+                         soja_antigo_link='/soja-anterior',
+                         milho__antigolink='/milho-anterior',
+                         trigo_antigo_link='/trigo-anterior',
+                         algodao_antigo_link='/algodao-anterior',
+                         consulta_link='/consulta',
+                         soja_text='Soja',
+                         milho_text='Milho',
+                         trigo_text='Trigo',
+                         algodao_text='Algodão',
+                         soja_text='Soja antigo',
+                         milho_text='Milho antigo',
+                         trigo_text='Trigo antigo',
+                         algodao_text='Algodão antigo',
+                        consulta_text='Consulte relatórios')
 
 @app.route("/milho-atual")
 def milho_atual():
