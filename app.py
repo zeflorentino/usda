@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def menu():
-  return render_template('produtos.html',
+  return render_template('menu.html',
                          soja_link='/soja-atual',
                          milho_link='/milho-atual',
                          trigo_link='/trigo-atual',
