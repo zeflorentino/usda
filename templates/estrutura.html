@@ -23,7 +23,7 @@
     </head>
     <body>
         <h1> {{titulo}} </h1>
-        <p>{{ texto_meio }}</p>
+        <p>{{ texto_meio | safe }}</p>
         <center>
             <a href="{{ url_passado }}"><strong>{{ opcao }}</strong></a><br>
             <a href="{{ url_menu }}"><strong>Volte ao menu</strong></a><br>
