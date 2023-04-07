@@ -141,16 +141,16 @@ def exibe_texto(data, produto):
               
 
         if coluna == 'producao':
-          mensagem = f'{produto}:USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas \n\n'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas <br><br>'
 
         elif coluna == 'demanda':
-          mensagem = f'{produto}: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas \n\n'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
               
         elif coluna == 'exportacao':
-          mensagem = f'{produto}: USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas \n\n'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         else:
-          mensagem = f'{produto}: USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas \n\n'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         texto += mensagem
 
