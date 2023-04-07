@@ -15,7 +15,7 @@ def ponto_para_virgula(numero):
     numero = numero.replace('.', ',')
   return numero
 
-def destaques(data, produto):
+def exibe_texto(data, produto):
   try:
     download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
 
