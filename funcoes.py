@@ -15,51 +15,98 @@ def ponto_para_virgula(numero):
     numero = numero.replace('.', ',')
   return numero
 
-
-def texto_milho(data):
-  try: 
+def pega_tabela(data, produto):
+  try:
     download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
 
-    tabela_milho = pd.read_excel(download.content, sheet_name = 16, skiprows=7)
+    if produto == 'Algodão':
+      sheet = 'Page 27'
+      pular = 9
+      colunas = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'demanda', 'exportacao', 'perdas', 'estoques_finais']
+    elif produto == 'Milho':
+      sheet = 16
+      pular = 7
+      colunas = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'uso_domestico', 'demanda', 'exportacao', 'estoques_finais']
+    elif produto == 'Soja':
+      sheet = 'Page 28'
+      pular = 40
+      colunas = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'esmagamento', 'demanda', 'exportacao', 'estoques_finais']
+    elif produto == 'Trigo':
+      sheet = 'Page 19'
+      pular = 9
+      colunas = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'esmagamento', 'demanda', 'exportacao', 'estoques_finais']
 
-    tabela_milho.columns = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'uso_domestico', 'uso_total', 'exportacao', 'estoques_finais']
+    tabela = pd.read_excel(download.content, sheet_name = sheet, skiprows = pular)
 
-    tabela_milho = tabela_milho[2:]
+    tabela.columns = colunas
 
-    tabela_milho['local'].fillna(method='pad', inplace=True)
+    tabela.dropna(subset=['mes'], inplace = True)
 
-    tabela_milho = tabela_milho.reset_index()
+    tabela['local'].fillna(method = 'pad', inplace = True)
 
-    tabela_milho = tabela_milho.drop(columns = ['index'])
+    tabela = tabela.reset_index(drop = True)
 
-    tabela_milho['local'] = tabela_milho['local'].str.strip()
+    tabela['local'] = tabela['local'].str.strip()
 
-    tabela_milho['mes'] = tabela_milho['mes'].str.strip()
+    tabela['mes'] = tabela['mes'].str.strip()
 
-    paises = ['World  3/', 'United States', 'Brazil', 'Argentina', 'Ukraine']
+  except:
+    tabela = "Não tem"
+  return tabela
+
+
+def faz_texto(tabela, produto):
+  try:
+    colunas = ['producao', 'demanda', 'exportacao', 'estoques_finais']
+
+    if produto == "Algodão":
+      paises = ['World', 'United States', 'Brazil', 'India', 'China',]
+      head = "Algodão:"
+    elif produto == 'Soja':
+      paises = ['World  2/', 'United States', 'Brazil', 'Argentina']
+      head = "Soja:"
+    elif produto == 'Milho':
+      paises = ['World  3/', 'United States', 'Brazil', 'Argentina', 'Ukraine']
+      head = "Milho:"
+    elif produto == 'Trigo':
+      paises = ['World  3/', 'United States', 'Brazil', 'Argentina', 'Russia', 'Ukraine' ]
+      head = "Trigo:"
+    else:
+      mensagem_final = "O relatório ainda não está disponível!"
 
     texto = f""
 
     for pais in paises:
-      tabela_pais = tabela_milho.query('local == @pais')
-      
-      colunas = ['producao', 'uso_total', 'exportacao', 'estoques_finais']
+      tabela_pais = tabela.query('local == @pais')
+        
+        
       for coluna in colunas:
         tabela_pais[f'variacao_' + coluna] = float(tabela_pais[coluna].iloc[1]) / float(tabela_pais[coluna].iloc[0]) * 100 - 100
         tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 1)
 
       for coluna in colunas:
-        numero = tabela_pais[coluna].iloc[1]
- 
-        lista_paises = {'World  3/': 'no mundo', 
-                        'United States' : 'nos EUA',
-                        'Brazil' : 'no Brasil',
-                        'Argentina' : 'na Argentina',
-                        'Ukraine' : 'na Ucrânia'}
-        str_pais = pais
-        for chave, valor in lista_paises.items():
-          str_pais = str_pais.replace(chave, valor)
+        if produto == 'Algodão':
+          numero = tabela_pais[coluna].iloc[1] * 0.21772433
+        else:
+          numero = tabela_pais[coluna].iloc[1]
+      
+        paises = {'World': 'mundial',
+                  'World  3/' : 'mundial',
+                  'World  2/': 'mundial',
+                      'United States' : 'nos EUA', 
+                      'Brazil' : 'no Brasil', 
+                      'Argentina' : 'na Argentina', 
+                      'Ukraine' : 'na Ucrânia', 
+                      'India' : 'na Índia', 
+                      'Russia' : 'na Rússia', 
+                      'China' : 'na China'}
 
+        str_pais = pais
+        for chave, valor in paises.items():
+          str_pais = str_pais.replace(chave, valor)
+          str_pais = str_pais.replace("  3/", "")
+          str_pais = str_pais.replace("  2/", "")
+      
         percentual = ponto_para_virgula(abs(tabela_pais[f'variacao_{coluna}'].iloc[1]))
 
         if tabela_pais[f'variacao_{coluna}'].iloc[1] == 0:
@@ -68,9 +115,9 @@ def texto_milho(data):
           varia = ''
 
         elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
-          movimento = "eleva"
-          complemento = ", para"
-          varia = f' em {percentual}%'
+                movimento = "eleva"
+                complemento = ", para"
+                varia = f' em {percentual}%'
 
         else:
           movimento = "reduz"
@@ -81,25 +128,32 @@ def texto_milho(data):
           numero = numero / 1000
           numero = ponto_para_virgula(numero)
           unidade = 'bilhão'
-        
+            
         elif numero > 2:
           unidade = "milhões"
           numero = ponto_para_virgula(numero)
-        else:
+        
+        elif numero > 1:
           unidade = "milhão"
           numero = ponto_para_virgula(numero)  
 
-        if coluna == 'producao':
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas <br><br>'
+        else:
+          unidade = "mil"
+          numero = numero * 100
+          numero = ponto_para_virgula(numero)  
+              
 
-        elif coluna == 'uso_total':
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
-          
+        if coluna == 'producao':
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas <br><br>'
+
+        elif coluna == 'demanda':
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+              
         elif coluna == 'exportacao':
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         else:
-          mensagem = f'<strong>Milho:</strong> USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         texto += mensagem
 
@@ -108,278 +162,10 @@ def texto_milho(data):
   
   return texto
 
-def texto_soja(data):
-  try: 
-
-    download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
-
-    tabela_soja = pd.read_excel(download.content, sheet_name = "Page 28", skiprows=40)
-
-    tabela_soja.columns = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'esmagamento', 'uso_total', 'exportacao', 'estoques_finais']
-
-    tabela_soja['local'].fillna(method='pad', inplace=True)
-
-    tabela_soja = tabela_soja.reset_index()
-
-    tabela_soja = tabela_soja.drop(columns = ['index'])
-
-    tabela_soja['local'] = tabela_soja['local'].str.strip()
-
-    tabela_soja['mes'] = tabela_soja['mes'].str.strip()
-    
-    texto_final = f''
-
-    paises = ['World  2/', 'United States', 'Brazil', 'Argentina']
-
-    colunas = ['producao', 'uso_total', 'exportacao', 'estoques_finais']
-
-    for pais in paises:
-      tabela_pais = tabela_soja.query('local == @pais')
-      for coluna in colunas:
-        tabela_pais[f'variacao_' + coluna] = float(tabela_pais[coluna].iloc[1]) / float(tabela_pais[coluna].iloc[0]) * 100 - 100
-        tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 1)
-
-      for coluna in colunas:
-        numero = tabela_pais[coluna].iloc[1]
-        
-        lista_paises = {'World  2/' : 'mundial',
-                        'United States' : 'nos EUA',
-                        'Brazil' : 'no Brasil',
-                        'Argentina' : 'na Argentina',
-                        'Ukraine' : 'na Ucrânia'}
-
-        str_pais = pais
-
-        for chave, valor in lista_paises.items():
-          str_pais = str_pais.replace(chave, valor)
-
-        percentual = ponto_para_virgula(abs(tabela_pais[f'variacao_{coluna}'].iloc[1]))
-
-        if tabela_pais[f'variacao_{coluna}'].iloc[1] == 0:
-          movimento = "mantém"
-          complemento = " em"
-          varia = ''
-
-        elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
-          movimento = "eleva"
-          complemento = ", para"
-          varia = f' em {percentual}%'
-
-        else:
-          movimento = "reduz"
-          complemento = ", para"
-          varia = f' em {percentual}%'
-          
-        if numero >= 1000.0:
-          numero = numero / 1000
-          numero = ponto_para_virgula(numero)
-          unidade = 'bilhão'
-        
-        elif numero > 2:
-          unidade = "milhões"
-          numero = ponto_para_virgula(numero)
-        else:
-          unidade = "milhão"
-          numero = ponto_para_virgula(numero)  
-
-        if coluna == 'producao':
-          mensagem = f'Soja: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        elif coluna == 'uso_total':
-          mensagem = f'Soja: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        elif coluna == 'exportacao':
-          mensagem = f'Soja: USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        else:
-          mensagem = f'Soja: USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        texto_final = texto_final + mensagem
-  except:
-    texto_final = "O relatório ainda não está disponível!"   
-  return texto_final
-
-def texto_trigo(data):
-  try:
-    download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
-
-    tabela_trigo = pd.read_excel(download.content, sheet_name = "Page 19", skiprows=9)
-
-    tabela_trigo.columns = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'uso_domestico', 'uso_total', 'exportacao', 'estoques_finais']
-
-    tabela_trigo['local'].fillna(method='pad', inplace=True)
-
-    tabela_trigo = tabela_trigo.reset_index()
-
-    tabela_trigo = tabela_trigo.drop(columns = ['index'])
-
-    tabela_trigo['local'] = tabela_trigo['local'].str.strip()
-
-    tabela_trigo['mes'] = tabela_trigo['mes'].str.strip()
-        
-    paises = ['World  3/', 'United States', 'Brazil', 'Argentina', 'Russia', 'Ukraine' ]
-
-    colunas = ['producao', 'uso_total', 'exportacao', 'estoques_finais']
-
-    texto_final = f''
-
-    for pais in paises:
-      tabela_pais = tabela_trigo.query('local == @pais')
-      for coluna in colunas:
-        tabela_pais[f'variacao_' + coluna] = float(tabela_pais[coluna].iloc[1]) / float(tabela_pais[coluna].iloc[0]) * 100 - 100
-        tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 1)
-
-      for coluna in colunas:
-        numero = tabela_pais[coluna].iloc[1]
-              
-        lista_paises = {'World  3/' : 'mundial',
-                        'United States' : 'nos EUA',
-                        'Brazil' : 'no Brasil',
-                        'Argentina' : 'na Argentina',
-                        'Russia' : 'na Rússia',
-                        'Ukraine' : 'na Ucrânia'}
-
-        str_pais = pais
-
-        for chave, valor in lista_paises.items():
-          str_pais = str_pais.replace(chave, valor)
-
-        percentual = ponto_para_virgula(abs(tabela_pais[f'variacao_{coluna}'].iloc[1]))
-
-        if tabela_pais[f'variacao_{coluna}'].iloc[1] == 0:
-          movimento = "mantém"
-          complemento = " em"
-          varia = ''
-
-        elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
-          movimento = "eleva"
-          complemento = ", para"
-          varia = f' em {percentual}%'
-
-        else:
-          movimento = "reduz"
-          complemento = ", para"
-          varia = f' em {percentual}%'
-
-        if numero > 2:
-          unidade = "milhões"
-          numero = ponto_para_virgula(numero)
-      
-        else:
-          unidade = "milhão"
-          numero = ponto_para_virgula(numero) 
-
-        if coluna == 'producao':
-          mensagem = f'Trigo: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        elif coluna == 'uso_total':
-          mensagem = f'Trigo: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        elif coluna == 'exportacao':
-          mensagem = f'Trigo: USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        else:
-          mensagem = f'Trigo: USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas<br><br>'
-
-        texto_final = texto_final + mensagem  
-
-  except:
-    texto_final = "O relatório ainda não está disponível!"   
-  return texto_final
-
-def texto_algodao(data):
-  try: 
-
-    download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
-
-    tabela_algodao = pd.read_excel(download.content, sheet_name = "Page 27", skiprows=9)
-
-    tabela_algodao.columns = ['local', 'mes', 'estoques_iniciais', 'producao', 'importacao', 'uso_domestico', 'exportacao', 'perdas', 'estoques_finais']
-
-    tabela_algodao.dropna(subset=['mes'], inplace=True)
-
-    tabela_algodao['local'].fillna(method='pad', inplace=True)
-
-    tabela_algodao = tabela_algodao.reset_index()
-
-    tabela_algodao = tabela_algodao.drop(columns = ['index'])
-
-    tabela_algodao['local'] = tabela_algodao['local'].str.strip()
-
-    tabela_algodao['mes'] = tabela_algodao['mes'].str.strip()
-    
-    texto_final = f''
-
-    paises = ['World', 'United States', 'Brazil', 'India', 'China',]
-
-    colunas = ['producao', 'uso_domestico', 'exportacao', 'estoques_finais']
-
-    for pais in paises:
-      tabela_pais = tabela_algodao.query('local == @pais')
-      for coluna in colunas:
-        tabela_pais[f'variacao_' + coluna] = float(tabela_pais[coluna].iloc[1]) / float(tabela_pais[coluna].iloc[0]) * 100 - 100
-        tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 1)
-
-      for coluna in colunas:
-        numero = tabela_pais[coluna].iloc[1] * 0.21772433
-
-        lista_paises = {'World' : 'mundial',
-                        'United States' : 'nos EUA',
-                        'Brazil' : 'no Brasil',
-                        'Argentina' : 'na Argentina',
-                        'India' : 'na Índia',
-                        'China' : 'na China'}
-
-        str_pais = pais
-
-        for chave, valor in lista_paises.items():
-          str_pais = str_pais.replace(chave, valor)
-
-        percentual = ponto_para_virgula(abs(tabela_pais[f'variacao_{coluna}'].iloc[1]))
-
-        if tabela_pais[f'variacao_{coluna}'].iloc[1] == 0:
-          movimento = "mantém"
-          complemento = " em"
-          varia = ''
-
-        elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
-          movimento = "eleva"
-          complemento = ", para"
-          varia = f' em {percentual}%'
-
-        else:
-          movimento = "reduz"
-          complemento = ", para"
-          varia = f' em {percentual}%'
-
-        if numero >= 2:
-          numero = ponto_para_virgula(numero)
-          unidade = 'milhões de'
-        
-        elif numero > 1:
-          unidade = "milhão de"
-          numero = ponto_para_virgula(numero)
-        else:
-          numero = numero * 100
-          unidade = "mil"
-          numero = ponto_para_virgula(numero)  
-
-        if coluna == 'producao':
-          mensagem = f'Algodão: USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} toneladas<br><br>'
-
-        elif coluna == 'uso_total':
-          mensagem = f'Algodão: USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} toneladas<br><br>'
-
-        elif coluna == 'exportacao':
-          mensagem = f'Algodão: USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} toneladas<br><br>'
-
-        else:
-          mensagem = f'Algodão: USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} toneladas<br><br>'
-
-        texto_final = texto_final + mensagem
-  except:
-    texto_final = "O relatório ainda não está disponível!"   
-  return texto_final
+def exibe_texto(data, produto):
+  tabela = pega_tabela(data, produto)
+  texto = faz_texto(tabela, produto)
+  return texto
 
 def historico(link, produto, safra):
   link = link
