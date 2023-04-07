@@ -25,7 +25,7 @@ token = os.environ["TELEGRAM_API_KEY"]
 
 def envia_boletim():
  resumo = funcoes.texto_cabeca('0323')
- nova_resposta = f'&#127805 <strong>NOVO RELATÓRIO:</strong> {resumo} \n\n<a href='https://site-teste-zeflorentino.onrender.com/'><strong>Clique para ler todos os destaques.</strong></a>' 
+ nova_resposta = f'&#127805 <strong>NOVO RELATÓRIO:</strong> {resumo} \n\n<a href="https://site-teste-zeflorentino.onrender.com/"><strong>Clique para ler todos os destaques.</strong></a>' 
  lista_cadastros = cadastrados.get_all_values()
 
  for x in lista_cadastros:
