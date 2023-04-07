@@ -41,10 +41,12 @@ def menu():
 @app.route("/milho-atual")
 def milho_atual():
   texto_meio = funcoes.exibe_texto(hoje, 'Milho')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/milho-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  return render_template('estrutura.html',
+                  titulo = 'Relatório deste mês',
+                  opcao = 'Relatório do mês passado',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/milho-anterior',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
   
 @app.route("/milho-anterior")
 def milho_anterior():
@@ -52,56 +54,69 @@ def milho_anterior():
   return render_template('estrutura.html',
                   titulo = 'Relatório do mês passado',
                   opcao = 'Relatório do mês atual',
-                  url_passado = 'https://usda-zeflorentino.onrender.com/milho',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/milho-atual',
                   url_menu = 'https://usda-zeflorentino.onrender.com/')
 
 @app.route("/soja-atual")
 def soja_atual():
   texto_meio = funcoes.exibe_texto(hoje, 'Soja')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/soja-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  return render_template('estrutura.html',
+                  titulo = 'Relatório deste mês',
+                  opcao = 'Relatório do mês passado',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/soja-anterior',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
   
 @app.route("/soja-anterior")
 def soja_anterior():
   texto_meio = funcoes.exibe_texto(data_anterior, 'Soja')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/soja-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  return render_template('estrutura.html',
+                  titulo = 'Relatório do mês passado',
+                  opcao = 'Relatório do mês atual',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/soja-atual',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
 
 @app.route("/trigo-atual")
 def trigo_atual():
   texto_meio = funcoes.exibe_texto(hoje, 'Trigo')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/trigo-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  return render_template('estrutura.html',
+                  titulo = 'Relatório deste mês',
+                  opcao = 'Relatório do mês passado',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/trigo_anterior',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
   
 @app.route("/trigo-anterior")
 def trigo_anterior():
   texto_meio = funcoes.exibe_texto(data_anterior, 'Trigo')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/trigo-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  return render_template('estrutura.html',
+                  titulo = 'Relatório do mês passado',
+                  opcao = 'Relatório deste mês',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/trigo_atual',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
 
 @app.route("/algodao-atual")
 def algodao_atual():
   texto_meio = funcoes.exibe_texto(hoje, 'Algodão')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/algodao-anterior"><font face = "Tahoma" size = "4"><strong>Relatório do mês passado.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  return render_template('estrutura.html',
+                  titulo = 'Relatório deste mês',
+                  opcao = 'Relatório do mês passado',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/algodao_anterior',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
   
 @app.route("/algodao-anterior")
 def algodao_anterior():
   texto_meio = funcoes.exibe_texto(data_anterior, 'Algodão')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/algodao-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  return render_template('estrutura.html',
+                  titulo = 'Relatório do mês passado',
+                  opcao = 'Relatório deste mês',
+                  texto_meio = texto_meio,
+                  url_passado = 'https://usda-zeflorentino.onrender.com/algodao_atual',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
 
 @app.route("/botdoze", methods=["POST"])
 def telegram_bot():
