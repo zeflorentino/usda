@@ -85,7 +85,7 @@ def trigo_atual():
                   titulo = 'Relatório deste mês',
                   opcao = 'Relatório do mês passado',
                   texto_meio = texto_meio,
-                  url_passado = 'https://usda-zeflorentino.onrender.com/trigo_anterior',
+                  url_passado = 'https://usda-zeflorentino.onrender.com/trigo-anterior',
                   url_menu = 'https://usda-zeflorentino.onrender.com/')
   
 @app.route("/trigo-anterior")
@@ -95,7 +95,7 @@ def trigo_anterior():
                   titulo = 'Relatório do mês passado',
                   opcao = 'Relatório deste mês',
                   texto_meio = texto_meio,
-                  url_passado = 'https://usda-zeflorentino.onrender.com/trigo_atual',
+                  url_passado = 'https://usda-zeflorentino.onrender.com/trigo-atual',
                   url_menu = 'https://usda-zeflorentino.onrender.com/')
 
 @app.route("/algodao-atual")
@@ -105,7 +105,7 @@ def algodao_atual():
                   titulo = 'Relatório deste mês',
                   opcao = 'Relatório do mês passado',
                   texto_meio = texto_meio,
-                  url_passado = 'https://usda-zeflorentino.onrender.com/algodao_anterior',
+                  url_passado = 'https://usda-zeflorentino.onrender.com/algodao-anterior',
                   url_menu = 'https://usda-zeflorentino.onrender.com/')
   
 @app.route("/algodao-anterior")
@@ -115,7 +115,7 @@ def algodao_anterior():
                   titulo = 'Relatório do mês passado',
                   opcao = 'Relatório deste mês',
                   texto_meio = texto_meio,
-                  url_passado = 'https://usda-zeflorentino.onrender.com/algodao_atual',
+                  url_passado = 'https://usda-zeflorentino.onrender.com/algodao-atual',
                   url_menu = 'https://usda-zeflorentino.onrender.com/')
 
 @app.route("/botdoze", methods=["POST"])
