@@ -49,10 +49,11 @@ def milho_atual():
 @app.route("/milho-anterior")
 def milho_anterior():
   texto_meio = funcoes.exibe_texto(data_anterior, 'Milho')
-  texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório do mês passado.</strong></font><br><br>
-        {texto_meio}
-        <center><a href="/milho-atual"><font face = "Tahoma" size = "4"><strong>Relatório deste mês.</strong></font></a><br><a href="/"><font face = "Tahoma" size = "3"><strong>Retorne ao menu</strong></font></a></center>"""
-  return texto_final
+  render_template('estrutura.html',
+                  titulo = 'Relatório do mês passado',
+                  opcao = 'Relatório do mês atual',
+                  url_passado = 'https://usda-zeflorentino.onrender.com/milho',
+                  url_menu = 'https://usda-zeflorentino.onrender.com/')
 
 @app.route("/soja-atual")
 def soja_atual():
