@@ -49,7 +49,7 @@ def milho_atual():
 @app.route("/milho-anterior")
 def milho_anterior():
   texto_meio = funcoes.exibe_texto(data_anterior, 'Milho')
-  render_template('estrutura.html',
+  return render_template('estrutura.html',
                   titulo = 'Relatório do mês passado',
                   opcao = 'Relatório do mês atual',
                   url_passado = 'https://usda-zeflorentino.onrender.com/milho',
