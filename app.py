@@ -39,7 +39,7 @@ def menu():
                          consulta_text='Consulte relatórios')
 
 @app.route("/milho-atual")
-def milho_atual():
+def milho_atual(hoje):
   texto_meio = funcoes.exibe_texto(hoje, 'Milho')
   texto_final = f"""<font face = "Tahoma" size = "5"><strong>Relatório deste mês.</strong></font><br><br>
         {texto_meio}
