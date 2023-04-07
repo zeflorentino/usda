@@ -15,7 +15,7 @@ def ponto_para_virgula(numero):
     numero = numero.replace('.', ',')
   return numero
 
-def pega_tabela(data, produto):
+def destaques(data, produto):
   try:
     download = requests.get(f'https://www.usda.gov/oce/commodity/wasde/wasde{data}.xls')
 
@@ -52,10 +52,7 @@ def pega_tabela(data, produto):
 
   except:
     tabela = "Não tem"
-  return tabela
 
-
-def faz_texto(tabela, produto):
   try:
     colunas = ['producao', 'demanda', 'exportacao', 'estoques_finais']
 
@@ -160,11 +157,6 @@ def faz_texto(tabela, produto):
   except:
     texto = "O relatório ainda não está disponível!"      
   
-  return texto
-
-def exibe_texto(data, produto):
-  tabela = pega_tabela(data, produto)
-  texto = faz_texto(tabela, produto)
   return texto
 
 def historico(link, produto, safra):
