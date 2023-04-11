@@ -11,8 +11,7 @@ TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 
 app = Flask(__name__)
 
-hoje = datetime.now()
-hoje = hoje.strftime("%m%y")
+hoje = datetime.now().strftime("%m%y")
 primeiro_dia = hoje.replace(day=1)
 data_anterior = primeiro_dia - timedelta(days=1)
 data_anterior = data_anterior.strftime("%m%y")
