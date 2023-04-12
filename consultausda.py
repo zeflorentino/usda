@@ -18,6 +18,10 @@ def historico(link, produto, safra):
   link = link
   produto = produto.lower()
   safra = safra
+  if produto == 'soja':
+    reporte = 'World Soybean Supply and Use'
+    paises = ['World', 'United States', 'Brazil', 'Argentina']
+    head = "Soja:"
   elif produto == 'milho':
     reporte = 'World Corn Supply and Use'
     paises = ['World', 'United States', 'Brazil', 'Argentina', 'Ukraine']
