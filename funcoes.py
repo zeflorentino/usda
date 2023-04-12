@@ -163,14 +163,20 @@ def historico(link, produto, safra):
   link = link
   produto = produto
   safra = safra
-  if produto == 'soja':
-    reporte = 'World Soybean Supply and Use'
-    paises = ['World', 'United States', 'Brazil', 'Argentina']
-    head = "Soja:"
-  else:
+  elif produto == 'milho':
     reporte = 'World Corn Supply and Use'
     paises = ['World', 'United States', 'Brazil', 'Argentina', 'Ukraine']
     head = "Milho:"
+  elif produto == 'algodão':
+    reporte = 'World and U.S. Supply and Use for Cotton'
+    paises = ['World', 'United States', 'Brazil', 'India', 'China',]
+    head = "Algodão:"
+  elif produto == 'trigo':
+    reporte = 'World Wheat Supply and Use'
+    paises = ['World', 'United States', 'Brazil', 'Argentina', 'Russia', 'Ukraine' ]
+    head = "Trigo:"
+  else:
+    return
   
   tabela = pd.read_csv(link)
   tabela = tabela.query('MarketYear	== @safra and ReportTitle == @reporte')  
