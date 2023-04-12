@@ -161,7 +161,7 @@ def exibe_texto(data, produto):
 
 def historico(link, produto, safra):
   link = link
-  produto = produto
+  produto = produto.lower()
   safra = safra
   elif produto == 'milho':
     reporte = 'World Corn Supply and Use'
