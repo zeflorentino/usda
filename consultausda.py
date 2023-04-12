@@ -89,7 +89,6 @@ def baixa_tabela(link):
 def historico_antigo(tabela, produto, safra, ano, mes):
   produto = produto.lower()
   safra = safra
-
   if produto == 'soja':
     reporte = 'World Soybean Supply and Use'
     paises = ['World', 'United States', 'Brazil', 'Argentina']
