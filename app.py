@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 
 import funcoes
 import telegram_funcoes
+import consulta
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 
@@ -132,11 +133,23 @@ def consulta():
 @app.route('/resultado', methods=['POST'])
 def resultado():
   ano = str(request.form['ano'])
+  ano = int(ano)
   mes = str(request.form['mes'])
-  link = f"https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-{mes}.csv"
+  mes = int(mes)
   safra = str(request.form['safra'])
   produto = str(request.form['produto'])
-  resultado = funcoes.historico(link, produto, safra)
+  if ano >= 2021:
+    link = f"https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-{mes}.csv"
+    resultado = consultausda.historico(link, produto, safra)
+  elif ano >= 2016:
+    tabela = consultausda.baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2016-01-to-2020-12.zip')
+    resultado = consultausda.historico_antigo(tabela, produto, safra, ano, mes)
+  elif ano >= 2010:
+    tabela = consultausda.baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2010-04-to-2015-12.zip')
+    resultado = consultausda.historico_antigo(tabela, produto, safra, ano, mes)
+  else:
+    resultado = 'A combinação não está disponível'
+
   mostra = f"""<font face = "Tahoma" size = "5"><strong>Destaques do relatório de {mes}/{ano} sobre a safra {safra} de {produto}:</strong></font><br><br>{resultado}"""
   return mostra
 
