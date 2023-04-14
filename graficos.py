@@ -2,6 +2,9 @@ import zipfile
 import pandas as pd
 import requests
 import io
+import altair as alt
+
+
 
 def baixa_tabela(link):
   download = requests.get(link)
