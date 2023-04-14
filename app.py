@@ -150,7 +150,7 @@ def resultado():
   
   conteudo = faz_grafico(arquivo, safra, produto, ano2, mes2)
   grafico = conteudo[0]
-  tabela = conteudo [1]
+  tabela = conteudo[1]
   
   return render_template('grafico.html', chart = grafico.to_json(), table = tabela)
 
