@@ -86,5 +86,7 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
     title='Projeções do USDA em milhões de toneladas',
     width=700,
     height=400).interactive()
+  
+  tabelahtml = tabela.to_html(index=False)
 
-  return grafico, tabela
+  return grafico, tabelahtml
