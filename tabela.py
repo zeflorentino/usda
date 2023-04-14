@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime, timedelta
 import pandas as pd
+import altair as alt
 
 def tabela_grafico(tabela, safra, produto, ano, mes):
   produto = produto.lower()
