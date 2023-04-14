@@ -96,6 +96,8 @@ def faz_grafico(tabela, safra, produto, ano, mes):
     
   grafico_final = alt.vconcat(*graficos)
   
+  tabela = tabela.drop_duplicates(subset='index')
+  
   tabelavert = tabela.pivot(index='Local', columns='Categoria', values='Estimativa')
 
   tabelahtml = tabelavert.to_html(index = True)
