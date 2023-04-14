@@ -90,6 +90,6 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
   
   tabelavert = tabela.pivot(index='Local', columns='Categoria', values='Estimativa')
 
-  tabelahtml = tabelavert.to_html(index=False)
+  tabelahtml = tabelavert.to_html(index = True)
 
   return grafico, tabelahtml
