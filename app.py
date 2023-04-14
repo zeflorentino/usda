@@ -7,7 +7,7 @@ import pandas as pd
 
 import funcoes
 import telegram_funcoes
-from grafico_usda import faz_grafico
+from grafico_usda import faz_grafico, baixa_tabela
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 
@@ -142,9 +142,9 @@ def resultado():
   if ano2 >= 2021:
     arquivo = pd.read_csv(f'https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-{mes}.csv')
   elif ano2 >= 2016:
-    arquivo = consultausda.baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2016-01-to-2020-12.zip')
+    arquivo = baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2016-01-to-2020-12.zip')
   elif ano2 >= 2010:
-    arquivo = consultausda.baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2010-04-to-2015-12.zip')
+    arquivo = baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2010-04-to-2015-12.zip')
   else:
     resultado = 'A combinação não está disponível'
   
