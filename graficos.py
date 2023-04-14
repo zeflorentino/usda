@@ -19,16 +19,12 @@ def faz_grafico(tabela, safra, produto, ano, mes):
   safra = safra
   if produto == 'soja':
     reporte = 'World Soybean Supply and Use'
-    head = "Soja:"
   elif produto == 'milho':
     reporte = 'World Corn Supply and Use'
-    head = "Milho:"
   elif produto == 'algodão':
     reporte = 'World Cotton Supply and Use'
-    head = "Algodão:"
   elif produto == 'trigo':
     reporte = 'World Wheat Supply and Use'
-    head = "Trigo:"
   else:
     return
   
