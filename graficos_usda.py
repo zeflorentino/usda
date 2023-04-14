@@ -80,7 +80,9 @@ def faz_grafico(tabela, safra, produto, ano, mes):
             'Paraguay': 'Paraguai', 
             'Ukraine': 'Ucrânia', 
             'United Kingdom': 'Reino Unido',
-            'Southeast Asia' : 'Sudeste Asiático'
+            'Southeast Asia' : 'Sudeste Asiático',
+            'FSU-12' : 'Antiga União Soviética',
+            'EU-27' : 'União Europeia (27 países)'
             }
 
   tabela["Local"] = tabela["Local"].map(locais)
