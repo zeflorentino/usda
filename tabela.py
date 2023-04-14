@@ -85,7 +85,7 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
     size = alt.Size('Estimativa', scale=alt.Scale(range=[50, 400])),
     tooltip=['Local', 'Categoria', 'Estimativa']).properties(
     title='Projeções do USDA em milhões de toneladas',
-    width='000,
+    width=1000,
     height=500).interactive()
   
   tabelavert = tabela.pivot(index='Local', columns='Categoria', values='Estimativa')
