@@ -7,9 +7,7 @@ import pandas as pd
 
 import funcoes
 import telegram_funcoes
-import consultausda
-from tabela import tabela_grafico
-
+from grafico_usda import faz_grafico
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 
@@ -150,7 +148,7 @@ def resultado():
   else:
     resultado = 'A combinação não está disponível'
   
-  conteudo = tabela_grafico(arquivo, safra, produto, ano2, mes2)
+  conteudo = faz_grafico(arquivo, safra, produto, ano2, mes2)
   grafico = conteudo[0]
   tabela = conteudo [1]
   
