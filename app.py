@@ -139,11 +139,11 @@ def resultado():
   mes2 = int(request.form['mes'])
   safra = str(request.form['safra'])
   produto = str(request.form['produto'])
-  if ano2 >= 2021:
+  if ano2 > 2020:
     arquivo = pd.read_csv(f'https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-0{mes}.csv')
-  elif ano2 >= 2016:
+  elif ano2 > 2015:
     arquivo = baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2016-01-to-2020-12.zip')
-  elif ano2 >= 2010:
+  elif ano2 > 2009:
     arquivo = baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2010-04-to-2015-12.zip')
   else:
     resultado = 'A combinação não está disponível'
