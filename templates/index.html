@@ -2,17 +2,54 @@
 <html>
 <head>
 	<title>Formulário</title>
+	<style>
+		label {
+			display: block;
+			margin-bottom: 10px;
+			background-color: black;
+			color: white;
+			padding: 5px;
+			border-radius: 5px;
+			max-width: 350px;
+		}
+		input, textarea {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			background-color: #f6f6f6;
+			font-size: 16px;
+			resize: vertical;
+			max-width: 350px;
+			box-sizing: border-box;
+		}
+		input:focus, textarea:focus {
+			outline: none;
+			border-color: #555;
+		}
+		#instrucoes {
+			margin-bottom: 10px;
+			max-width: 350px;
+		}
+	</style>
 </head>
 <body>
 	<form method="POST" action="/resultado">
-		<label>Ano do relatório (ex: 2023):</label>
-		<input type="text" name="ano"><br>
-		<label>Mês do relatório (ex: 02):</label>
-		<input type="text" name="mes"><br>
-		<label>Safra (ex: 2022/23):</label>
-		<input type="text" name="safra"><br>
-		<label>Produto (ex: Soja ou Milho):</label>
-		<input type="text" name="produto"><br>
+		<label for="instrucoes">Instruções:</label>
+		<textarea name="instrucoes" id="instrucoes" rows="5">Formato ano: 2023
+Formato mês: 5
+Formato safra: 2022/23
+Produtos: algodão, soja, milho e trigo.</textarea>
+		<label for="ano">Ano do relatório:</label>
+		<input type="text" name="ano" id="ano">
+		<label for="mes">Mês do relatório:</label>
+		<input type="text" name="mes" id="mes">
+		<label for="safra">Safra:</label>
+		<input type="text" name="safra" id="safra">
+		<label for="produto">Produto:</label>
+		<input type="text" name="produto" id="produto">
 		<button type="submit">Gerar Texto</button>
 	</form>
 </body>
