@@ -3,6 +3,7 @@ import json
 import requests
 import os
 from datetime import datetime, timedelta
+import pandas as pd
 
 import funcoes
 import telegram_funcoes
@@ -142,18 +143,17 @@ def resultado():
   produto = str(request.form['produto'])
   if ano >= 2021:
     arquivo = pd.read_csv('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-{mes}.csv')
-    
   elif ano >= 2016:
     arquivo = consultausda.baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2016-01-to-2020-12.zip')
-    conteudo = tabela_grafico(arquivo, safra, produto, ano, mes)
-
   elif ano >= 2010:
     arquivo = consultausda.baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2010-04-to-2015-12.zip')
-    tabela_grafico(arquivo, safra, produto, ano, mes)
   else:
     resultado = 'A combinação não está disponível'
+  
+  conteudo = tabela_grafico(arquivo, safra, produto, ano, mes)
   grafico = conteudo[0]
   tabela = conteudo [1]
+  
   return render_template('grafico.html', chart = grafico.to_json(), table = tabela)
 
 if __name__ == '__main__':
