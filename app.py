@@ -140,7 +140,7 @@ def resultado():
   safra = str(request.form['safra'])
   produto = str(request.form['produto'])
   if ano2 >= 2021:
-    arquivo = pd.read_csv(f'https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-{mes}.csv')
+    arquivo = pd.read_csv(f'https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-0{mes}.csv')
   elif ano2 >= 2016:
     arquivo = baixa_tabela('https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-2016-01-to-2020-12.zip')
   elif ano2 >= 2010:
