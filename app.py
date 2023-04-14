@@ -7,7 +7,7 @@ import pandas as pd
 
 import funcoes
 import telegram_funcoes
-from grafico_usda import faz_grafico, baixa_tabela
+from graficos_usda import faz_grafico, baixa_tabela
 
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 
