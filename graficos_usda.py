@@ -88,15 +88,12 @@ def faz_grafico(tabela, safra, produto, ano, mes):
   agrupado = tabela.groupby('Categoria')
   graficos = []
   for categoria, data in agrupado:
-    chart = alt.Chart(data).mark_bar().encode(x='Estimativa', 
-                                              y=alt.Y('Local', sort='-x'), 
-                                              color='Local',
-                                              tooltip = ['Local', 'Categoria', 'Estimativa']).interactive()
+    chart = alt.Chart(data).mark_bar().encode(x='Value', y=alt.Y('Region', sort='-x'), color='Region').
     graficos.append(chart)
     
   grafico_final = alt.vconcat(*graficos)
-    
-  tabelavert = tabela.pivot_table(tabela, values='Estimativa', index=['Local'], columns=['Categoria']).reset_index().rename(columns={'index': 'Local'})
+  
+  tabelavert = tabela.pivot(index='Local', columns='Categoria', values='Estimativa')
 
   tabelahtml = tabelavert.to_html(index = True)
 
