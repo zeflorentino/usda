@@ -88,7 +88,7 @@ def faz_grafico(tabela, safra, produto, ano, mes):
   agrupado = tabela.groupby('Categoria')
   graficos = []
   for categoria, data in agrupado:
-    chart = alt.Chart(data).mark_bar().encode(x='Value', y=alt.Y('Region', sort='-x'), color='Region').
+    chart = alt.Chart(data).mark_bar().encode(x='Estimativa', y=alt.Y('Local', sort='-x'), color='Local')
     graficos.append(chart)
     
   grafico_final = alt.vconcat(*graficos)
