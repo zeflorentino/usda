@@ -90,7 +90,8 @@ def faz_grafico(tabela, safra, produto, ano, mes):
   for categoria, data in agrupado:
     chart = alt.Chart(data).mark_bar().encode(x='Estimativa', 
                                               y=alt.Y('Local', sort='-x'), 
-                                              color='Local')
+                                              color='Local',
+                                              tooltip = ['Local', 'Categoria', 'Estimativa']).interactive()
     graficos.append(chart)
     
   grafico_final = alt.vconcat(*graficos)
