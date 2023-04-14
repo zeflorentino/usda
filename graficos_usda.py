@@ -88,7 +88,12 @@ def faz_grafico(tabela, safra, produto, ano, mes):
   agrupado = tabela.groupby('Categoria')
   graficos = []
   for categoria, data in agrupado:
-    chart = alt.Chart(data).mark_bar().encode(x='Value', y=alt.Y('Region', sort='-x'), color='Region').
+    chart = alt.Chart(data).mark_bar().encode(x='Value', 
+                                              y=alt.Y('Region', sort='-x'), 
+                                              color='Region').properties(
+      title='Projeções do USDA em milhões de toneladas',
+      width=600,
+      height=400).interactive()
     graficos.append(chart)
     
   grafico_final = alt.vconcat(*graficos)
