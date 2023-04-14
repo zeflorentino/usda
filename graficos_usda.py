@@ -85,7 +85,7 @@ def faz_grafico(tabela, safra, produto, ano, mes):
 
   tabela["Local"] = tabela["Local"].map(locais)
 
-  agrupado = df.groupby('Categoria')
+  agrupado = tabela.groupby('Categoria')
   graficos = []
   for categoria, data in agrupado:
     chart = alt.Chart(data).mark_bar().encode(x='Value', y=alt.Y('Region', sort='-x'), color='Region').
