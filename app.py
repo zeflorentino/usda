@@ -136,9 +136,9 @@ def consulta():
 @app.route('/resultado', methods=['POST'])
 def resultado():
   ano = str(request.form['ano'])
-  ano = int(ano)
+  ano2 = int(ano)
   mes = str(request.form['mes'])
-  mes = int(mes)
+  mes2 = int(mes)
   safra = str(request.form['safra'])
   produto = str(request.form['produto'])
   if ano >= 2021:
@@ -150,7 +150,7 @@ def resultado():
   else:
     resultado = 'A combinação não está disponível'
   
-  conteudo = tabela_grafico(arquivo, safra, produto, ano, mes)
+  conteudo = tabela_grafico(arquivo, safra, produto, ano2, mes2)
   grafico = conteudo[0]
   tabela = conteudo [1]
   
