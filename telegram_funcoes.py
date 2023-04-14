@@ -36,7 +36,6 @@ def envia_boletim():
 
 def processa_update(dados):
  update = dados
- update_id = update["update_id"]
  first_name = update["message"]["from"]["first_name"]
  message = update["message"]["text"]
  chat_id = update["message"]["chat"]["id"]
@@ -69,6 +68,3 @@ def processa_update(dados):
   texto_resposta = f"Não entendi, <strong>{first_name}</strong>!\n\nCaso queira receber mensalmente as projeções do <strong>Departamento de Agricultura dos Estados Unidos</strong>, envie '1'.\n\nSe quer parar de receber, envie '2'."
  nova_mensagem = {"chat_id": chat_id, "text": texto_resposta, "parse_mode" : 'HTML'}
  requests.post(f"https://api.telegram.org./bot{token}/sendMessage", data=nova_mensagem)  
-
- update_id = update["update_id"]
- registros.update("A1", update_id)
