@@ -36,7 +36,7 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
                 'Imports' : 'Importações',
                 'Production' : 'Produção',
                 'Loss' : 'Perdas'}
-  tabela["Categoria"] = tabela["Categoria"].map(categorias, na_action='ignore').fillna(tabela['Categoria'])
+  tabela["Categoria"] = tabela["Categoria"].map(categorias)
 
   locais = {'Afr. Fr. Zone': 'Zona da Franco-Africana', 
             'Australia': 'Austrália', 
@@ -76,7 +76,7 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
             'Southeast Asia' : 'Sudeste Asiático'
             }
 
-  tabela["Local"] = tabela["Local"].map(locais, na_action='ignore').fillna(tabela['Local'])
+  tabela["Local"] = tabela["Local"].map(locais)
 
   grafico = alt.Chart(tabela).mark_circle(color="red", opacity=0.5).encode(
     x='Estimativa',
@@ -85,7 +85,7 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
     size = alt.Size('Estimativa', scale=alt.Scale(range=[50, 400])),
     tooltip=['Local', 'Categoria', 'Estimativa']).properties(
     title='Projeções do USDA em milhões de toneladas',
-    width='100%',
+    width='000,
     height=500).interactive()
   
   tabelavert = tabela.pivot(index='Local', columns='Categoria', values='Estimativa')
