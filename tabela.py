@@ -22,8 +22,8 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
     return
   
   tabela = tabela.query('MarketYear	== @safra and ReportTitle == @reporte and ForecastYear == @ano and ForecastMonth == @mes')  
-  tabela = tabela.loc[:, ['Commodity', 'Region', 'Attribute', 'Value']] 
-  tabela.columns = ['Commodity', 'Local', 'Categoria', 'Estimativa']
+  tabela = tabela.loc[:, ['Region', 'Attribute', 'Value']] 
+  tabela.columns = ['Local', 'Categoria', 'Estimativa']
   
   
   categorias = {'Beginning Stocks' : 'Estoques iniciais',
