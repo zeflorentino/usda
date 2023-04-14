@@ -136,9 +136,9 @@ def consulta():
 @app.route('/resultado', methods=['POST'])
 def resultado():
   ano = str(request.form['ano'])
-  ano2 = int(ano)
+  ano2 = int(request.form['ano'])
   mes = str(request.form['mes'])
-  mes2 = int(mes)
+  mes2 = int(request.form['mes'])
   safra = str(request.form['safra'])
   produto = str(request.form['produto'])
   if ano >= 2021:
