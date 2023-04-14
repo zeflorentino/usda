@@ -36,7 +36,7 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
                 'Imports' : 'Importações',
                 'Production' : 'Produção',
                 'Loss' : 'Perdas'}
-  tabela["Categoria"] = tabela["Categoria"].map(categorias)
+  tabela["Categoria"] = tabela["Categoria"].map(categorias, na_action='ignore').fillna(tabela['Categoria'])
 
   locais = {'Afr. Fr. Zone': 'Zona da Franco-Africana', 
             'Australia': 'Austrália', 
@@ -76,7 +76,7 @@ def tabela_grafico(tabela, safra, produto, ano, mes):
             'Southeast Asia' : 'Sudeste Asiático'
             }
 
-  tabela["Local"] = tabela["Local"].map(locais)
+  tabela["Local"] = tabela["Local"].map(locais, na_action='ignore').fillna(tabela['Local'])
 
   grafico = alt.Chart(tabela).mark_circle(color="red", opacity=0.5).encode(
     x='Estimativa',
