@@ -24,7 +24,7 @@ ultimo = int(registros.get("A1")[0][0])
 token = os.environ["TELEGRAM_API_KEY"]
 
 def envia_boletim():
- resumo = funcoes.texto_cabeca('0323')
+ resumo = funcoes.texto_cabeca('0523')
  nova_resposta = f'&#127805 <strong>NOVO RELATÓRIO:</strong> {resumo} \n\n<a href="https://usda-zeflorentino.onrender.com/milho-atual"><strong>Clique para ler todos os destaques.</strong></a>' 
  lista_cadastros = cadastrados.get_all_values()
 
