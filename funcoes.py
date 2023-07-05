@@ -143,16 +143,16 @@ def exibe_texto(data, produto):
               
 
         if coluna == 'producao':
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} estimativa de produção {str_pais} na safra 2022/23{varia}{complemento} {numero} {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} estimativa de produção {str_pais} na safra 2023/24{varia}{complemento} {numero} {unidade} de toneladas <br><br>'
 
         elif coluna == 'demanda':
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} previsão de demanda {str_pais} na safra 2023/24{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
               
         elif coluna == 'exportacao':
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} projeção de exportação {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} projeção de exportação {str_pais} na safra 2023/24{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         else:
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} perspectiva de estoque final {str_pais} na safra 2022/23{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
+          mensagem = f'<strong>{produto}:</strong> USDA {movimento} perspectiva de estoque final {str_pais} na safra 2023/24{varia}{complemento} {numero}  {unidade} de toneladas <br><br>'
 
         texto += mensagem
 
@@ -201,7 +201,7 @@ def texto_cabeca(data):
         numero = ponto_para_virgula(numero)
 
       if coluna == 'producao':
-        mensagem = f'O Departamento de Agricultura dos Estados Unidos estimou hoje que a produção mundial de milho na safra 2022/23 chegará a {numero} bilhão de toneladas. '
+        mensagem = f'O Departamento de Agricultura dos Estados Unidos estimou hoje que a produção mundial de milho na safra 2023/24 chegará a {numero} bilhão de toneladas. '
 
       elif coluna == 'uso_total':
         mensagem = f'Já a previsão de demanda global é de {numero} bilhão de toneladas. '
