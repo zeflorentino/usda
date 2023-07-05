@@ -79,7 +79,7 @@ def exibe_texto(data, produto):
         
       for coluna in colunas:
         tabela_pais[f'variacao_' + coluna] = float(tabela_pais[coluna].iloc[1]) / float(tabela_pais[coluna].iloc[0]) * 100 - 100
-        tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 1)
+        tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 2)
 
       for coluna in colunas:
         if produto == 'Algodão':
@@ -120,6 +120,8 @@ def exibe_texto(data, produto):
           movimento = "reduz"
           complemento = ", para"
           varia = f' em {percentual}%'
+
+        tabela_pais[f'variacao_' + coluna] = round(tabela_pais[f'variacao_' + coluna], 1)
 
         if numero >= 1000.0:
           numero = numero / 1000
