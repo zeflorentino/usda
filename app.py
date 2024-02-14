@@ -7,8 +7,6 @@ from datetime import datetime, timedelta
 import funcoes
 import telegram_funcoes
 
-TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
-
 app = Flask(__name__)
 
 hoje = datetime.now()
@@ -117,27 +115,6 @@ def algodao_anterior():
                   texto_meio = texto_meio,
                   url_passado = 'https://usda-zeflorentino.onrender.com/algodao-atual',
                   url_menu = 'https://usda-zeflorentino.onrender.com/')
-
-@app.route("/botdoze", methods=["POST"])
-def telegram_bot():
-  update = request.json
-  telegram_funcoes.processa_update(update)
-  return "Ok"
-
-@app.route('/consulta')
-def consulta():
-  return render_template('index.html')
-
-@app.route('/resultado', methods=['POST'])
-def resultado():
-  ano = str(request.form['ano'])
-  mes = str(request.form['mes'])
-  link = f"https://www.usda.gov/sites/default/files/documents/oce-wasde-report-data-{ano}-{mes}.csv"
-  safra = str(request.form['safra'])
-  produto = str(request.form['produto'])
-  resultado = funcoes.historico(link, produto, safra)
-  mostra = f"""<font face = "Tahoma" size = "5"><strong>Destaques do relatório de {mes}/{ano} sobre a safra {safra} de {produto}:</strong></font><br><br>{resultado}"""
-  return mostra
 
 if __name__ == '__main__':
     app.run(debug=True)
