@@ -12,6 +12,7 @@ hoje = datetime.now()
 primeiro_dia = hoje.replace(day=1)
 data_anterior = primeiro_dia - timedelta(days=1)
 data_anterior = data_anterior.strftime("%m%y")
+hoje = hoje.strftime("%m%y")
 
 @app.route("/")
 def menu():
