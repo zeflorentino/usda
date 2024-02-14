@@ -5,7 +5,6 @@ import os
 from datetime import datetime, timedelta
 
 import funcoes
-import telegram_funcoes
 
 app = Flask(__name__)
 
