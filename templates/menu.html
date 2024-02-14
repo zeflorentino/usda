@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Relatório do USDA</title>
+    <style>
+      .btn {
+        font-family: Verdana;
+        font-size: 16px;
+        color: white;
+        background-color: black;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        width: 200px; /
+      }
+    </style>
+    <style>
+      .btn2 {
+        font-family: Verdana;
+        font-size: 16px;
+        color: white;
+        background-color: black;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        width: 405px;
+      }
+    </style>
+  </head>
+  <body><div style="text-align: center;">
+    <h1>Relatório do USDA</h1>
+    <button class="btn">
+      <a href="{{ soja_link }}" style="text-decoration: none; color: inherit;">{{ soja_text }}</a>
+    </button>
+    <button class="btn">
+      <a href="{{ soja_antigo_link }}" style="text-decoration: none; color: inherit;">{{ soja_antigo_text }}</a>
+    </button>
+    <br>
+    <button class="btn">
+      <a href="{{ milho_link }}" style="text-decoration: none; color: inherit;">{{ milho_text }}</a>
+    </button>
+    <button class="btn">
+      <a href="{{ milho_antigo_link }}" style="text-decoration: none; color: inherit;">{{ milho_antigo_text }}</a>
+    </button>
+    <br>
+    <button class="btn">
+      <a href="{{ trigo_link }}" style="text-decoration: none; color: inherit;">{{ trigo_text }}</a>
+    </button>
+    <button class="btn">
+      <a href="{{ trigo_antigo_link }}" style="text-decoration: none; color: inherit;">{{ trigo_antigo_text }}</a>
+    </button>
+    <br>
+    <button class="btn">
+      <a href="{{ algodao_link }}" style="text-decoration: none; color: inherit;">{{ algodao_text }}</a>
+    </button>
+    <button class="btn">
+      <a href="{{ algodao_antigo_link }}" style="text-decoration: none; color: inherit;">{{ algodao_antigo_text }}</a>
+    </button>
+    <br>
+    <button class="btn2">
+      <a href="{{ consulta_link }}" style="text-decoration: none; color: inherit;">{{ consulta_text }}</a>
+    </button>
+  </body>
+</html>
