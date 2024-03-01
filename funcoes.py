@@ -114,12 +114,12 @@ def exibe_texto(data, produto):
         elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
                 movimento = "sobe"
                 complemento = ", para"
-                varia = f' em {percentual}%'
+                varia = f'{percentual}%'
 
         else:
           movimento = "cai"
           complemento = ", para"
-          varia = f' em {percentual}%'
+          varia = f'{percentual}%'
 
         if numero >= 1000.0:
           numero = numero / 1000
@@ -141,16 +141,16 @@ def exibe_texto(data, produto):
               
 
         if coluna == 'producao':
-          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t <br><br>'
+          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t, diz USDA<br><br>'
 
         elif coluna == 'demanda':
-          mensagem = f'Agro: Demanda {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t  <br><br>'
+          mensagem = f''
               
         elif coluna == 'exportacao':
-          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t  <br><br>'
+          mensagem = f'Agro: Exportação {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t, diz USDA<br><br>'
 
         else:
-          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t  <br><br>'
+          mensagem = f'Agro: Estoque final {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t, diz USDA<br><br>'
 
         texto += mensagem
 
