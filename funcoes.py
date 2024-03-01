@@ -141,16 +141,16 @@ def exibe_texto(data, produto):
               
 
         if coluna == 'producao':
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} estimativa de produção {str_pais}{varia}{complemento} {numero} {unidade} de t <br><br>'
+          mensagem = f'Agro: Produção {str_pais} de {produto} {movimento} {varia}, {complemento} {numero} {unidade} t <br><br>'
 
         elif coluna == 'demanda':
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} previsão de demanda {str_pais}{varia}{complemento} {numero} {unidade} de t <br><br>'
+          mensagem = f'Agro: Demanda {str_pais} de {produto} {movimento} {varia}, {complemento} {numero} {unidade} t  <br><br>'
               
         elif coluna == 'exportacao':
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} projeção de exportação {str_pais}{varia}{complemento} {numero} {unidade} de t <br><br>'
+          mensagem = f'Agro: Produção {str_pais} de {produto} {movimento} {varia}, {complemento} {numero} {unidade} t  <br><br>'
 
         else:
-          mensagem = f'<strong>{produto}:</strong> USDA {movimento} perspectiva de estoque final {str_pais}{varia}{complemento} {numero} {unidade} de t <br><br>'
+          mensagem = f'Agro: Produção {str_pais} de {produto} {movimento} {varia}, {complemento} {numero} {unidade} t  <br><br>'
 
         texto += mensagem
 
