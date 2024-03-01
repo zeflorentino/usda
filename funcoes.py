@@ -58,16 +58,16 @@ def exibe_texto(data, produto):
 
     if produto == "Algodão":
       paises = ['World', 'United States', 'Brazil', 'India', 'China',]
-      head = "algodão:"
+      head = "algodão"
     elif produto == 'Soja':
       paises = ['World  2/', 'United States', 'Brazil', 'Argentina']
-      head = "soja:"
+      head = "soja"
     elif produto == 'Milho':
       paises = ['World  3/', 'United States', 'Brazil', 'Argentina', 'Ukraine']
-      head = "milho:"
+      head = "milho"
     elif produto == 'Trigo':
       paises = ['World  3/', 'United States', 'Brazil', 'Argentina', 'Russia', 'Ukraine' ]
-      head = "trigo:"
+      head = "trigo"
     else:
       mensagem_final = "O relatório ainda não está disponível!"
 
@@ -113,12 +113,12 @@ def exibe_texto(data, produto):
 
         elif tabela_pais[f'variacao_{coluna}'].iloc[1] >= 0:
                 movimento = "sobe"
-                complemento = " para"
+                complemento = ", para"
                 varia = f' em {percentual}%'
 
         else:
           movimento = "cai"
-          complemento = " para"
+          complemento = ", para"
           varia = f' em {percentual}%'
 
         if numero >= 1000.0:
@@ -141,16 +141,16 @@ def exibe_texto(data, produto):
               
 
         if coluna == 'producao':
-          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}, {complemento} {numero} {unidade} t <br><br>'
+          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t <br><br>'
 
         elif coluna == 'demanda':
-          mensagem = f'Agro: Demanda {str_pais} de {head} {movimento} {varia}, {complemento} {numero} {unidade} t  <br><br>'
+          mensagem = f'Agro: Demanda {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t  <br><br>'
               
         elif coluna == 'exportacao':
-          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}, {complemento} {numero} {unidade} t  <br><br>'
+          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t  <br><br>'
 
         else:
-          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}, {complemento} {numero} {unidade} t  <br><br>'
+          mensagem = f'Agro: Produção {str_pais} de {head} {movimento} {varia}{complemento} {numero} {unidade} t  <br><br>'
 
         texto += mensagem
 
